@@ -1,64 +1,44 @@
 <template>
-  <div>
-    <v-container fluid fill-height>
-      <v-layout align-center justify-center>
-        <v-flex xs12 sm8 md4>
-          <v-form ref="form" v-model="valid" @submit.prevent="submit">
-            <v-card class="elevation-12">
-              <v-toolbar dark color="primary">
-                <v-toolbar-title>Вход</v-toolbar-title>
-                <v-spacer></v-spacer>
-              </v-toolbar>
-              <v-card-text>
+  <v-layout align-center justify-center>
+    <v-spacer/>
+    <v-flex xs12 sm8 md4>
+      <v-form ref="form" v-model="valid" @submit.prevent="submit">
+        <v-card class="elevation-12">
+          <v-toolbar dark color="primary">
+            <v-toolbar-title>Вход</v-toolbar-title>
+            <v-spacer></v-spacer>
+          </v-toolbar>
+          <v-card-text>
 
-                <v-text-field
-                  label="Email*"
-                  v-model="email"
-                  required
-                  :rules="[required, emailRul]"
-                  autocomplete="off"
-                />
+            <v-text-field
+              label="Email*"
+              v-model="email"
+              required
+              :rules="[required, emailRul]"
+              autocomplete="off"
+            />
 
-                <v-text-field
-                  id="password"
-                  v-model="password"
-                  name="password"
-                  label="Пароль"
-                  :rules="[required]"
-                  type="password"
-                  autocomplete="off"
-                />
+            <v-text-field
+              id="password"
+              v-model="password"
+              name="password"
+              label="Пароль"
+              :rules="[required]"
+              type="password"
+              autocomplete="off"
+            />
 
-              </v-card-text>
-              <v-card-actions>
-                <v-spacer></v-spacer>
-                <v-btn color="primary" :disabled="!valid" @click="login">Вход</v-btn>
-              </v-card-actions>
-            </v-card>
-          </v-form>
-        </v-flex>
-      </v-layout>
-    </v-container>
-
-<!--    <v-card>-->
-<!--      <v-card-label>-->
-<!--        Регистрация-->
-<!--      </v-card-label>-->
-<!--      <v-card-text>-->
-<!--        <v-layout row wrap>-->
-<!--          <v-flex xs12>-->
-<!--            <v-text-field-->
-<!--              lable=""-->
-<!--            />-->
-<!--          </v-flex>-->
-<!--          <v-flex xs12>-->
-
-<!--          </v-flex>-->
-<!--        </v-layout>-->
-
-<!--      </v-card-text>-->
-<!--    </v-card>-->
-  </div>
+          </v-card-text>
+          <v-card-actions>
+            <v-btn text outlined to="/registration">Регистрация </v-btn>
+            <v-spacer></v-spacer>
+            <v-btn text outlined color="green" :disabled="!valid" @click="login">Войти</v-btn>
+          </v-card-actions>
+        </v-card>
+      </v-form>
+    </v-flex>
+    <v-spacer/>
+  </v-layout>
 </template>
 
 <script>
@@ -66,11 +46,12 @@
 
   import DatePicker from "../components/common/DatePicker";
   export default {
-    name: "registration",
+    name: "login",
+    layout: "login",
     components: {DatePicker},
     data() {
       return {
-        email: 'a@a.ru',
+        email: null,
         password: null,
         valid: false,
         required: value => !!value || 'Поле не может быть пустым',
@@ -95,7 +76,21 @@
             password: this.password,
           }
         }).then(data => {
-          this.$router.push({ path: '/start' })
+          let success =data.data.login.success
+
+          if (success) {
+            this.$router.push({ path: '/my_pictures' })
+          } else {
+            console.log(this)
+            this.$notify({
+              type: 'error',
+              group: 'dataValid',
+              title: 'Ошибка авторизации',
+              text: 'Проверьте  введенный email и пароль.',
+              duration: 2000,
+            });
+
+          }
         })
       }
     }

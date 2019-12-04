@@ -37,6 +37,7 @@ export default {
   plugins: [
     '@/components/user/auth.js',
     '@/plugins/auth-mixin.js',
+    '@/plugins/vue-notifications'
   ],
   /*
   ** Nuxt.js dev-modules

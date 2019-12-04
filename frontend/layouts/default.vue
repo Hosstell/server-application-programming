@@ -4,8 +4,8 @@
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
-      fixed
-      app
+      absolute
+      temporary
     >
       <v-list>
         <v-list-item>
@@ -17,6 +17,7 @@
           :to="item.to"
           router
           exact
+          @click="closeNavigator"
         >
           <v-list-item-action>
             <v-icon>{{ item.icon }}</v-icon>
@@ -51,20 +52,25 @@ export default {
       fixed: false,
       items: [
         {
-          icon: 'mdi-apps',
-          title: 'Welcome',
-          to: '/'
+          icon: 'mdi-numeric',
+          title: 'Распознать',
+          to: '/recognize'
         },
         {
-          icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          icon: 'mdi-image-multiple',
+          title: 'Мои изображения',
+          to: '/my_pictures'
         }
       ],
       miniVariant: false,
       right: true,
       rightDrawer: false,
       title: 'Vuetify.js'
+    }
+  },
+  methods: {
+    closeNavigator() {
+      this.drawer = false
     }
   }
 }

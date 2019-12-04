@@ -18,7 +18,6 @@ const auth = new Vue({
             }
           }`
         })
-        console.log(data)
         if (data.currentUser) {
           this.user.id = data.currentUser.id
         }

@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.conf.urls import url
 from django.contrib import admin
-from graphene_django.views import GraphQLView
+from graphene_file_upload.django import FileUploadGraphQLView
+from pictures.views import download
 
 urlpatterns = [
+    url(r'^picture', download),
     url(r'^admin/', admin.site.urls),
-    url(r'^graphql/', GraphQLView.as_view(graphiql=True)),
+    url(r'^graphql/', FileUploadGraphQLView.as_view(graphiql=True)),
 ]

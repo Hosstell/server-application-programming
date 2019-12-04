@@ -11,12 +11,6 @@ class Avatar(models.Model):
     file = models.ImageField('Файл')
 
 
-class Pictures(models.Model):
-    link = models.TextField('Ссылка')
-    file = models.ImageField('Файл')
-    user_id = models.ForeignKey('users.User', null=True, on_delete=models.CASCADE)
-
-
 class User(AbstractBaseUser, PermissionsMixin):
     username = models.CharField('ФИО пользователя', max_length=250)
     birth_date = models.DateField('Дата рождения', null=True)

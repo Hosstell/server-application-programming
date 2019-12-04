@@ -41,7 +41,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'graphene_django',
     'firstapp.apps.FirstappConfig',
-    'users.apps.UsersConfig'
+    'users.apps.UsersConfig',
+    'pictures.apps.PicturesConfig'
 ]
 
 MIDDLEWARE = [
@@ -124,6 +125,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+MEDIA_ROOT = os.path.join(BASE_DIR, './../media')
+
 GRAPHENE = {
     'SCHEMA': 'backend.scheme.scheme'
 }
@@ -133,3 +136,6 @@ CORS_ORIGIN_WHITELIST = ('http://localhost:3000', 'http://127.0.0.1:3000')
 CORS_ALLOW_CREDENTIALS = True
 CSRF_TRUSTED_ORIGINS = ['localhost:8080', '127.0.0.1:8080', 'localhost']
 MIDDLEWARE.insert(0, 'corsheaders.middleware.CorsMiddleware')
+
+MAX_UPLOAD_SIZE = 50*1024*1024
+FILE_UPLOAD_MAX_MEMORY_SIZE = 50*1024*1024

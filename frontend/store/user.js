@@ -19,15 +19,14 @@ export const mutations = {
 
 export const actions = {
   getCurrentUser(ctx) {
-    console.log('getCurrentUser')
     return apollo(this)
       .query({
         query: getCurrentUser,
         fetchPolicy: 'no-cache'
       })
       .then(({ data }) => {
-        console.log(data)
         ctx.commit('setUser', data.getCurrentUser)
+        return data.getCurrentUser
       })
   }
 }

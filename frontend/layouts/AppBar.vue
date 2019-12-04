@@ -6,11 +6,6 @@
     >
       <v-app-bar-nav-icon @click.stop="changeMenuState" />
 
-      <v-btn
-        icon
-      >
-        <v-icon>mdi-application</v-icon>
-      </v-btn>
       <v-toolbar-title v-text="title"/>
       <v-spacer />
       <exit-button/>
@@ -25,7 +20,7 @@
     components: {ExitButton},
     data () {
       return {
-        title: 'Your new application',
+        title: 'Распознавание чисел',
       }
     },
     methods: {

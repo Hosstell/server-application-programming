@@ -12,10 +12,15 @@
   },
   "dependencies": {
     "@nuxtjs/apollo": "^4.0.0-rc15",
+    "apollo-link": "^1.2.13",
+    "apollo-link-context": "^1.0.19",
+    "apollo-link-http": "^1.5.16",
+    "apollo-upload-client": "^11.0.0",
     "cookie-universal-nuxt": "^2.0.18",
     "js-cookie": "^2.2.1",
     "lockr": "^0.8.5",
-    "nuxt": "^2.0.0"
+    "nuxt": "^2.0.0",
+    "vue-notification": "^1.3.20"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.0.0"
